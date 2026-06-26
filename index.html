@@ -7,6 +7,7 @@
   <meta name="description" content="EduNexa - Study notes, mock tests and learning resources for Kerala students">
   <link rel="canonical" href="https://edunexa-new.vercel.app/">
   <title>EduNexa Hub - Premium State Learning Platform</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
   <link rel="icon" type="image/png" href="logo.png">
   
@@ -34,6 +35,22 @@
     }
 
     body {
+      <script>
+  const supabaseUrl = "https://gnwoxepgsevnrpibtgrd.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdud294ZXBnc2V2bnJwaWJ0Z3JkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0Mzc4OTAsImV4cCI6MjA5ODAxMzg5MH0.eOWXZoKtVqLdtyu9OUzf3jiZAH5s-HXaUlOeRlD_E0w";
+
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  async function testSupabase() {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*');
+
+    console.log(data, error);
+  }
+
+  testSupabase();
+</script>
       background-color: #0b1329; /* Dark Indigo/Slate layout */
       color: #f1f5f9; /* High contrast text */
     }
