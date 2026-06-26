@@ -90,6 +90,29 @@
     console.log("Current user:", data.user);
   }
 </script>
+    <h2>Signup</h2>
+<input id="su_email" placeholder="email">
+<input id="su_pass" placeholder="password">
+<input id="su_name" placeholder="name">
+<button onclick="signUp(
+  document.getElementById('su_email').value,
+  document.getElementById('su_pass').value,
+  document.getElementById('su_name').value
+)">Sign Up</button>
+
+<hr>
+
+<h2>Login</h2>
+<input id="li_email" placeholder="email">
+<input id="li_pass" placeholder="password">
+<button onclick="login(
+  document.getElementById('li_email').value,
+  document.getElementById('li_pass').value
+)">Login</button>
+
+<hr>
+
+<button onclick="getUser()">Check Logged User</button>
       background-color: #0b1329; /* Dark Indigo/Slate layout */
       color: #f1f5f9; /* High contrast text */
     }
