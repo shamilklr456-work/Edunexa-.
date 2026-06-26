@@ -35,7 +35,7 @@
     }
 
     body {
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
   const supabaseUrl = "https://gnwoxepgsevnrpibtgrd.supabase.co";
@@ -43,16 +43,52 @@
 
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  async function testDB() {
-    const { data, error } = await supabase
-      .from('users')  // make sure this table exists
-      .select('*');
+  // SIGN UP
+  async function signUp(email, password, name) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password
+    });
 
-    console.log("DATA:", data);
-    console.log("ERROR:", error);
+    if (error) {
+      console.log("Signup error:", error.message);
+      return;
+    }
+
+    const user = data.user;
+
+    // save to your table
+    await supabase.from('users').insert([
+      {
+        id: user.id,
+        email: email,
+        name: name
+      }
+    ]);
+
+    console.log("User signed up + saved!");
   }
 
-  testDB();
+  // LOGIN
+  async function login(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      console.log("Login error:", error.message);
+      return;
+    }
+
+    console.log("Login success:", data.user);
+  }
+
+  // GET CURRENT USER
+  async function getUser() {
+    const { data } = await supabase.auth.getUser();
+    console.log("Current user:", data.user);
+  }
 </script>
       background-color: #0b1329; /* Dark Indigo/Slate layout */
       color: #f1f5f9; /* High contrast text */
