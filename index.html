@@ -35,22 +35,24 @@
     }
 
     body {
-      <script>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
   const supabaseUrl = "https://gnwoxepgsevnrpibtgrd.supabase.co";
   const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdud294ZXBnc2V2bnJwaWJ0Z3JkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0Mzc4OTAsImV4cCI6MjA5ODAxMzg5MH0.eOWXZoKtVqLdtyu9OUzf3jiZAH5s-HXaUlOeRlD_E0w";
 
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  async function testSupabase() {
+  async function testDB() {
     const { data, error } = await supabase
-      .from('users')
+      .from('users')  // make sure this table exists
       .select('*');
 
     console.log("DATA:", data);
     console.log("ERROR:", error);
   }
 
-  testSupabase();
+  testDB();
 </script>
       background-color: #0b1329; /* Dark Indigo/Slate layout */
       color: #f1f5f9; /* High contrast text */
